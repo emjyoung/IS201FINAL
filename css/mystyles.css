@@ -1,0 +1,164 @@
+.head{
+    font-family: Georgia, 'Times New Roman', Times, serif, Geneva, Tahoma, sans-serif;
+}
+   /* Basic Reset */
+   body {
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: ghostwhite;
+    
+}
+
+
+/* Navigation Bar Styling */
+nav {
+    background-color: #b2d0ce; /* Dark background */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box; /* Include border in sizing */
+    font-family: Arial, sans-serif;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Optional: Set box to stretch across the top */
+nav {
+    width: 100%;
+    position: fixed; /* Keeps nav at the top during scrolling */
+    top: 0;
+}
+
+/* Add some margin to the content to avoid overlap with fixed nav */
+main {
+    margin-top: 3rem;
+    text-align: center;
+}
+a{
+color: white;
+text-decoration: none;
+font-weight: bold;
+}
+h1{
+    text-align: center;
+    padding-top: 3%;
+}
+ul{
+    padding-left: 5%;
+    padding-right: 3%;
+}
+h3{
+    padding-left: 3%;
+}
+.navbar-light{
+    color: #b2d0ce
+}
+/* .topimg{
+
+} */
+.homebg{
+    background-image: url('../assets/img/bg-home.jpg');
+    background-size: 100%;
+}
+.firstdiv{
+    background-color: rgba(248, 248, 255, 0.952);
+    padding-block: 80px;
+    text-align: center;
+    color: #7a98a1;
+    margin-left: 53px;
+    margin-right: 53px;
+    position: static;
+
+}
+.twodiv{
+    padding-block: 60px;
+    color: ghostwhite;
+    font-weight: bolder;
+    text-align: center;
+}
+.thirddiv{
+    background-color: white;
+    padding-block: 100px;
+    text-align: center;
+    color: #7a98a1;
+}
+.utah{
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 3px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.facts{
+    font-size: x-large;
+    margin-bottom: 0;
+}
+.align {
+    text-align: center; /* Centers the content inside the container */
+}
+
+ol {
+    display: inline-block; /* Makes the list behave like an inline element */
+    text-align: left; /* Ensures the numbers and text align properly */
+    list-style-position: inside; /* Keeps numbers or bullets inside the box */
+    white-space: nowrap;
+    font-size: larger;
+    margin-top: 2px;
+}
+
+.fivediv{
+    background-color: white;
+    padding-block: 7px;
+    text-align: right;
+    color: #7a98a1;
+}
+.anchor{
+    text-align: right;
+    font-size: small;
+    background-color: white;
+    color: #7a98a1;
+}
+.footer{
+    background-color: #b2d0ce;
+    color: ghostwhite;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: center;
+    font-size: smaller;
+}
+h2{
+    font-size:50px;
+    color: ghostwhite;
+    margin: 0px;
+}
+.sub{
+    color: ghostwhite;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+}
+.customp{
+    margin-left: 260px;
+    margin-right: 260px;
+    font-size: larger;
+}

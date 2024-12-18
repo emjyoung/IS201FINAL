@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('../assets/img/bg-home.jpg');
+            background-size: 100%;
+            margin: 0;
+            margin-top: 10px;
+            padding: 0;
+        }
+        .content {
+            margin-top: 50px; /* Matches the height of the navbar */
+            padding: 20px;
+        }
+
+        .container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .card {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(0);
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .card-front {
+            background-color: #333;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background-size: cover;
+            background-position: center;
+        }
+        nav {
+        background-color: #b2d0ce; /* Dark background */
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        box-sizing: border-box; /* Include border in sizing */
+        font-family: Arial, sans-serif;
+        }   
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Optional: Set box to stretch across the top */
+nav {
+    width: 100%;
+    position: fixed; /* Keeps nav at the top during scrolling */
+    top: 0;
+}
+/* Add some margin to the content to avoid overlap with fixed nav */
+main {
+    margin-top: 5rem;
+    text-align: center;
+}
+a{
+color: white;
+text-decoration: none;
+font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a class="navbar-brand" href="#page-top">Emily Young</a>
+        </div>
+        <ul>
+            <li><a href="scratch.html">Home</a></li>
+            <li><a href="index.html">Personal Overview</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="game.html">Game</a></li>
+        </ul>
+    </nav>
+
+    <div class="container content">
+        <h1>Matching Game</h1>
+        <button id="startGame">Start Game</button>
+        <div class="game-board"></div>
+    </div>
+
+    <script>
+        const startGameButton = document.getElementById('startGame');
+        const gameBoard = document.querySelector('.game-board');
+
+        // Preloaded image paths
+        const images = [
+            'assets/img/game-one.jpg',
+            'assets/img/bg-home.jpg',
+            'assets/img/bg-signup.jpg',
+            'assets/img/game-two.jpg',
+            'assets/img/game-three.jpg',
+            'assets/img/game-four.jpg',
+            'assets/img/game-five.jpg',
+        ];
+
+        let shuffledCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+
+        // Start game
+        startGameButton.addEventListener('click', () => {
+            setupGame();
+        });
+
+        // Setup the game
+        function setupGame() {
+            gameBoard.innerHTML = '';
+            matchedPairs = 0;
+            shuffledCards = shuffle([...images, ...images]); // Duplicate each image to create pairs
+
+            shuffledCards.forEach(image => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `
+                    <div class="card-inner">
+                        <div class="card-front"></div>
+                        <div class="card-back" style="background-image: url('${image}');"></div>
+                    </div>
+                `;
+                card.addEventListener('click', () => flipCard(card, image));
+                gameBoard.appendChild(card);
+            });
+        }
+
+        // Flip a card
+        function flipCard(card, image) {
+            if (card.classList.contains('flipped') || flippedCards.length === 2) return;
+
+            card.classList.add('flipped');
+            flippedCards.push({ card, image });
+
+            if (flippedCards.length === 2) {
+                checkForMatch();
+            }
+        }
+
+        // Check if two flipped cards match
+        function checkForMatch() {
+            const [first, second] = flippedCards;
+
+            if (first.image === second.image) {
+                matchedPairs++;
+                flippedCards = [];
+
+                if (matchedPairs === images.length) {
+                    setTimeout(() => alert("You matched all pairs! Game over!"), 500);
+                }
+            } else {
+                setTimeout(() => {
+                    first.card.classList.remove('flipped');
+                    second.card.classList.remove('flipped');
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // Shuffle array
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+    </script>
+
+    
+</body>
+</html>
+
